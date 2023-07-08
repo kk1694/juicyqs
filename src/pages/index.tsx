@@ -17,6 +17,8 @@ const categories = [
   "outlier",
 ];
 
+
+
 export default function Home() {
   
   const [selected, setSelected] = useState<string[]>(["sex", "relationships"]);
@@ -66,15 +68,15 @@ export default function Home() {
                 <h2>Select Categories</h2>
                 <div className="flex flex-col">
                   {categories.map((c) => (
-                    <div key={c} className="flex flex-row gap-x-2 text-lg">
+                    <div key={c} className="flex flex-row gap-x-2 text-lg " onClick={(e) => {
+                      e.preventDefault();
+                      handleSelect(c);
+                    }}>
                       <input
                         type="checkbox"
                         className=""
                         checked={selected.includes(c)}
-                        onChange={(e) => {
-                          e.preventDefault();
-                          handleSelect(c);
-                        }}
+                        
                       />
                       <label>{c}</label>
                     </div>
