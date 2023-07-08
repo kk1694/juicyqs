@@ -312,7 +312,11 @@ export const questionRouter = createTRPCRouter({
         }
       }
 
-      return filtered[Math.floor(Math.random() * filtered.length)];
+      const idx = Math.floor(Math.random() * filtered.length);
+
+      console.log("filtered", filtered, "idx", idx)
+
+      return filtered[idx];
     }),
 });
 
