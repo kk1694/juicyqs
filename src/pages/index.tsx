@@ -49,7 +49,7 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main className="flex min-h-screen flex-col items-center justify-center bg-gradient-to-b from-[#2e026d] to-[#15162c] ">
-        <div className="container flex h-screen max-w-2xl flex-col items-start justify-center gap-12 px-6 py-16 ">
+        <div className="container flex h-screen max-w-2xl flex-col items-center justify-center gap-12 px-6 py-16 ">
           <h1 className="text-4xl font-extrabold tracking-tight text-white sm:text-[5rem]">
             Juicy <span className="text-[hsl(280,100%,70%)]">Questions</span>
           </h1>
@@ -64,11 +64,11 @@ export default function Home() {
           </button>
           {showSettings && (
             <>
-              <div className="flex w-full flex-col text-2xl text-slate-300">
+              <div className="flex w-full flex-col text-2xl text-slate-300 ">
                 <h2>Select Categories</h2>
                 <div className="flex flex-col">
                   {categories.map((c) => (
-                    <div key={c} className="flex flex-row gap-x-2 text-lg " onClick={(e) => {
+                    <div key={c} className="flex flex-row w-fit px-4 rounded-md gap-x-2 text-lg hover:bg-purple-400" onClick={(e) => {
                       e.preventDefault();
                       handleSelect(c);
                     }}>
@@ -101,16 +101,22 @@ export default function Home() {
           )}
 
           {!showSettings && (
-            <div className="flex flex-wrap text-medium text-2xl text-purple-300 justify-center w-full px-6">
+            <div className="flex flex-col gap-y-4 items-center">
+            <div className="flex flex-wrap text-center text-medium text-2xl text-purple-300 justify-center w-full px-6">
             <p className="">
             {question.data?.question}
+            </p>
+            </div>
+
+            <p className="text-sm text-slate-700">
+              {question.data?.category} / {question.data?.juicyness.toString()}
             </p>
             </div>
           )}
 
 
-          <button className="text-xl! h-10 w-full rounded-lg bg-purple-600 text-slate-300" onClick={() => {void handleNewQuestion()}}>
-            Next
+          <button className="text-xl! h-10 px-6 rounded-lg bg-purple-600 text-slate-300" onClick={() => {void handleNewQuestion()}}>
+            {question.isFetching ? "Loading..." : "New Question"}
           </button>
         </div>
       </main>
