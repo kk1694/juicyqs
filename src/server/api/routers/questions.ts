@@ -314,7 +314,7 @@ export const questionRouter = createTRPCRouter({
 
       const idx = Math.floor(Math.random() * filtered.length);
 
-      console.log("filtered", filtered, "idx", idx)
+      console.log("filtered", filtered.length, "idx", idx)
 
       return filtered[idx];
     }),
