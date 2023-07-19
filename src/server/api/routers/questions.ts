@@ -2,10 +2,10 @@ import { z } from "zod";
 import { createTRPCRouter, publicProcedure } from "~/server/api/trpc";
 
 interface QSInterface {
-  question: string
-  category: string
-  juicyness: number
-  gender?: "male" | "female"
+  question: string;
+  category: string;
+  juicyness: number;
+  gender?: "male" | "female";
 }
 
 const questions: QSInterface[] = [
@@ -13,7 +13,7 @@ const questions: QSInterface[] = [
     question: "When was the last time you had sex?",
     category: "sex",
     juicyness: 3,
-    gender: "male"
+    gender: "male",
   },
   {
     question: "When was the last time you had sex?",
@@ -310,7 +310,487 @@ const questions: QSInterface[] = [
     category: "relationships",
     juicyness: 3,
   },
-] 
+  {
+    question: "Have you ever felt betrayed?",
+    category: "soft points",
+    juicyness: 5,
+  },
+  {
+    question: "Have you ever felt that someone just used you?",
+    category: "soft points",
+    juicyness: 6,
+  },
+  {
+    question: "What was your biggest mistake so far?",
+    category: "soft points",
+    juicyness: 6,
+  },
+
+  {
+    question: "Have you ever done something that you are really ashamed of?",
+    category: "soft points",
+    juicyness: 5,
+  },
+  {
+    question: "What is your biggest insecurity about your body?",
+    category: "soft points",
+    juicyness: 3,
+  },
+  {
+    question: "What is your biggest fear right now?",
+    category: "soft points",
+    juicyness: 6,
+  },
+  {
+    question: "When was the last time when you felt you are lost?",
+    category: "soft points",
+    juicyness: 7,
+  },
+  {
+    question:
+      "What was the last event that you wish you were invited but you were not?",
+    category: "soft points",
+    juicyness: 3,
+  },
+  {
+    question: "What is your dream that you rather not talk about?",
+    category: "soft points",
+    juicyness: 6,
+  },
+  {
+    question: "When was the last time when you felt genuinly happy?",
+    category: "soft points",
+    juicyness: 7,
+  },
+
+  {
+    question: "What bit of you that people do not understand?",
+    category: "soft points",
+    juicyness: 4,
+  },
+  {
+    question: "What bit of you did your parents never understand?",
+    category: "family",
+    juicyness: 2,
+  },
+  {
+    question: "When you lie about the money you earn, why do you lie?",
+    category: "money",
+    juicyness: 2,
+  },
+  {
+    question: "What would you want to spend a lot of money on?",
+    category: "money",
+    juicyness: 2,
+  },
+  {
+    question: "What do you wish you could ideally tell your mother?",
+    category: "family",
+    juicyness: 4,
+  },
+  {
+    question: "What do you wish you could ideally tell your father?",
+    category: "family",
+    juicyness: 4,
+  },
+  {
+    question: "Rank people in terms of attractiveness in the room!",
+    category: "m",
+    juicyness: 2,
+  },
+  {
+    question: "What is love??",
+    category: "relationships",
+    juicyness: 1,
+  },
+  {
+    question:
+      "What is the difference between loving someone and being in love with someone??",
+    category: "relationships",
+    juicyness: 2,
+  },
+  {
+    question: "How do you know that you are in love?",
+    category: "romantic",
+    juicyness: 2,
+  },
+  {
+    question: "Sex is enough to fall in love with someone. Do you agree?",
+    category: "romantic",
+    juicyness: 3,
+  },
+  {
+    question:
+      " What is the biggest sacrifice that you have made for a relationship?",
+    category: "relationships",
+    juicyness: 3,
+  },
+  {
+    question: "Who does love you the most?",
+    category: "relationships",
+    juicyness: 5,
+  },
+  {
+    question: " Who do you love the most?",
+    category: " relationships ",
+    juicyness: 5,
+  },
+  {
+    question: "What is the purpose of your life?",
+    category: "each other",
+    juicyness: 2,
+  },
+  {
+    question: "Is it difficult for you to trust people? Why? ",
+    category: "relationships",
+    juicyness: 5,
+  },
+  {
+    question: "How do I make it difficult to trust me?",
+    category: "each other",
+    juicyness: 6,
+  },
+  {
+    question: "What is the quickest way to your heart? ",
+    category: "relationships ",
+    juicyness: 4,
+  },
+  {
+    question: "Have you ever lied to me? About what and when?",
+    category: "each other",
+    juicyness: 9,
+  },
+  {
+    question: "When was the last time that you lied to someone?",
+    category: "relationships",
+    juicyness: 3,
+  },
+  {
+    question: "When was the last time that someone lied to you?",
+    category: "relationships",
+    juicyness: 4,
+  },
+  {
+    question: "What was your biggest failure so far?",
+    category: "soft points ",
+    juicyness: 7,
+  },
+  {
+    question: "What was your biggest disappointment in love?",
+    category: "romantic",
+    juicyness: 6,
+  },
+  {
+    question: "What bit of you that people do not understand?",
+    category: "soft points",
+    juicyness: 4,
+  },
+  {
+    question: "What bit of you did your parents never understand?",
+    category: "family",
+    juicyness: 2,
+  },
+  {
+    question: "When you lie about the money you earn, why do you lie?",
+    category: "money",
+    juicyness: 2,
+  },
+  {
+    question: "What would you want to spend a lot of money on?",
+    category: "money",
+    juicyness: 2,
+  },
+  {
+    question: "What do you wish you could ideally tell your mother?",
+    category: "family",
+    juicyness: 4,
+  },
+  {
+    question: "What do you wish you could ideally tell your father?",
+    category: "family",
+    juicyness: 4,
+  },
+  {
+    question: "Rank people in terms of attractiveness in the room!",
+    category: "m",
+    juicyness: 2,
+  },
+  {
+    question: "What is love??",
+    category: "relationships",
+    juicyness: 1,
+  },
+  {
+    question:
+      "What is the difference between loving someone and being in love with someone??",
+    category: "relationships",
+    juicyness: 2,
+  },
+  {
+    question: "How do you know that you are in love?",
+    category: "romantic",
+    juicyness: 2,
+  },
+  {
+    question: "Sex is enough to fall in love with someone. Do you agree?",
+    category: "romantic",
+    juicyness: 3,
+  },
+  {
+    question:
+      " What is the biggest sacrifice that you have made for a relationship?",
+    category: "relationships",
+    juicyness: 3,
+  },
+  {
+    question: "Who does love you the most?",
+    category: "relationships",
+    juicyness: 5,
+  },
+  {
+    question: " Who do you love the most?",
+    category: " relationships ",
+    juicyness: 5,
+  },
+  {
+    question: "What is the purpose of your life?",
+    category: "each other",
+    juicyness: 2,
+  },
+  {
+    question: "Is it difficult for you to trust people? Why? ",
+    category: "relationships",
+    juicyness: 5,
+  },
+  {
+    question: "How do I make it difficult to trust me?",
+    category: "each other",
+    juicyness: 6,
+  },
+  {
+    question: "What is the quickest way to your heart? ",
+    category: "relationships ",
+    juicyness: 4,
+  },
+  {
+    question: "Have you ever lied to me? About what and when?",
+    category: "each other",
+    juicyness: 9,
+  },
+  {
+    question: "When was the last time that you lied to someone?",
+    category: "relationships",
+    juicyness: 3,
+  },
+  {
+    question: "When was the last time that someone lied to you?",
+    category: "relationships",
+    juicyness: 4,
+  },
+  {
+    question: "What was your biggest failure so far?",
+    category: "soft points ",
+    juicyness: 7,
+  },
+  {
+    question: "What was your biggest disappointment in love?",
+    category: "romantic",
+    juicyness: 6,
+  },
+  {
+    question: "What bit of you that people do not understand?",
+    category: "soft points",
+    juicyness: 4,
+  },
+  {
+    question: "What bit of you did your parents never understand?",
+    category: "family",
+    juicyness: 2,
+  },
+  {
+    question: "When you lie about the money you earn, why do you lie?",
+    category: "money",
+    juicyness: 2,
+  },
+  {
+    question: "What would you want to spend a lot of money on?",
+    category: "money",
+    juicyness: 2,
+  },
+  {
+    question: "What do you wish you could ideally tell your mother?",
+    category: "family",
+    juicyness: 4,
+  },
+  {
+    question: "What do you wish you could ideally tell your father?",
+    category: "family",
+    juicyness: 4,
+  },
+  {
+    question: "Rank people in terms of attractiveness in the room!",
+    category: "m",
+    juicyness: 2,
+  },
+  {
+    question: "What is love??",
+    category: "relationships",
+    juicyness: 1,
+  },
+  {
+    question:
+      "What is the difference between loving someone and being in love with someone??",
+    category: "relationships",
+    juicyness: 2,
+  },
+  {
+    question: "How do you know that you are in love?",
+    category: "romantic",
+    juicyness: 2,
+  },
+  {
+    question: "Sex is enough to fall in love with someone. Do you agree?",
+    category: "romantic",
+    juicyness: 3,
+  },
+  {
+    question:
+      " What is the biggest sacrifice that you have made for a relationship?",
+    category: "relationships",
+    juicyness: 3,
+  },
+  {
+    question: "Who does love you the most?",
+    category: "relationships",
+    juicyness: 5,
+  },
+  {
+    question: " Who do you love the most?",
+    category: " relationships ",
+    juicyness: 5,
+  },
+  {
+    question: "What is the purpose of your life?",
+    category: "each other",
+    juicyness: 2,
+  },
+  {
+    question: "Is it difficult for you to trust people? Why? ",
+    category: "relationships",
+    juicyness: 5,
+  },
+  {
+    question: "How do I make it difficult to trust me?",
+    category: "each other",
+    juicyness: 6,
+  },
+  {
+    question: "What is the quickest way to your heart? ",
+    category: "relationships ",
+    juicyness: 4,
+  },
+  {
+    question: "Have you ever lied to me? About what and when?",
+    category: "each other",
+    juicyness: 9,
+  },
+  {
+    question: "When was the last time that you lied to someone?",
+    category: "relationships",
+    juicyness: 3,
+  },
+  {
+    question: "When was the last time that someone lied to you?",
+    category: "relationships",
+    juicyness: 4,
+  },
+  {
+    question: "What was your biggest failure so far?",
+    category: "soft points ",
+    juicyness: 7,
+  },
+  {
+    question: "What was your biggest disappointment in love?",
+    category: "romantic",
+    juicyness: 6,
+  },
+  {
+    question: "How would you define our relationship?",
+    category: "each other",
+    juicyness: 2
+  },
+  {
+    question: "How would you change our relationship?",
+    category: "each other",
+    juicyness: 5
+  },
+  {
+    question: "What are the boundaries of our relationship that you would never cross?",
+    category: "each other",
+    juicyness: 7
+  },
+  {
+    question: "What song would best describe our relationship?",
+    category: "each other",
+    juicyness: 1
+  },
+  {
+    question: "What movie would best describe our relationship?",
+    category: "each other",
+    juicyness: 1
+  },
+  {
+    question: "What is something people don't understand about sex?",
+    category: "sex",
+    juicyness: 5
+  },
+  {
+    question: "What is something people don't understand about love?",
+    category: "relationship",
+    juicyness: 5
+  },
+  {
+    question: "What is your weakest skill?",
+    category: "soft points",
+    juicyness: 5
+  },
+  {
+    question: "Is it difficult for yout to reach orgasm?",
+    category: "sex",
+    juicyness: 4,
+    gender: "female"
+  },
+  {
+    question: "What is your weight?",
+    category: "soft points",
+    juicyness: 7,
+    gender: "female"
+  },
+  {
+    question: "What is your experience with sexual impotence?",
+    category: "sex",
+    juicyness: 9,
+    gender: "male"
+  },
+  {
+    question: "How long is your penis?",
+    category: "sex",
+    juicyness: 10,
+    gender: "male"
+  },
+  {
+    question: "What is your bra size?",
+    category: "sex",
+    juicyness: 5,
+    gender: "female"
+  },
+  {
+    question: "What is the last time you lied about your orgasm?",
+    category: "sex",
+    juicyness: 7,
+    gender: "female"
+  },
+];
 
 export const questionRouter = createTRPCRouter({
   random: publicProcedure
@@ -322,7 +802,6 @@ export const questionRouter = createTRPCRouter({
       })
     )
     .query(({ input }) => {
-      
       const filtered = questions.filter(
         (question) =>
           question.juicyness <= input.maxJuicyness &&
