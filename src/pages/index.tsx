@@ -75,7 +75,6 @@ export default function Home() {
               <h2 className="text-2xl text-slate-300">
                 Total Questions: {total.data?.total}
               </h2>
-
               <div className="flex w-full flex-col text-2xl text-slate-300 ">
                 <h2>Select Categories</h2>
                 <div className="grid grid-cols-2">
@@ -133,6 +132,20 @@ export default function Home() {
 
           {!showSettings && (
             <div className="flex flex-col items-center gap-y-4">
+              {question.data?.gender && question.data.gender === "male" && (
+                <div className="flex flex-col align-center text-center">
+                  <p className="text-lg text-red-400">
+                  Guys only!
+                </p>
+                  </div>
+              )}
+              {question.data?.gender && question.data.gender === "female" && (
+                <div className="flex flex-col align-center text-center">
+                  <p className="text-lg text-red-400">
+                  Ladies only!
+                </p>
+                  </div>
+              )}
               <div className="text-medium flex w-full flex-wrap justify-center px-6 text-center text-2xl text-purple-300">
                 <p className="">{question.data?.question}</p>
               </div>
@@ -141,6 +154,20 @@ export default function Home() {
                 {question.data?.category} /{" "}
                 {question.data?.juicyness.toString()}
               </p>
+              {question.data?.gender && question.data.gender === "male" && (
+                <div className="flex flex-col align-center text-center">
+                <p className='text-red-200 text-sm'>
+                  Ladies, please re-roll
+                </p>
+                  </div>
+              )}
+              {question.data?.gender && question.data.gender === "female" && (
+                <div className="flex flex-col align-center text-center">
+                <p className='text-red-200 text-sm'>
+                  Guys, please re-roll
+                </p>
+                  </div>
+              )}
             </div>
           )}
 

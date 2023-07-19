@@ -1,11 +1,19 @@
 import { z } from "zod";
 import { createTRPCRouter, publicProcedure } from "~/server/api/trpc";
 
-const questions = [
+interface QSInterface {
+  question: string
+  category: string
+  juicyness: number
+  gender?: "male" | "female"
+}
+
+const questions: QSInterface[] = [
   {
     question: "When was the last time you had sex?",
     category: "sex",
     juicyness: 3,
+    gender: "male"
   },
   {
     question: "When was the last time you had sex?",
@@ -302,7 +310,7 @@ const questions = [
     category: "relationships",
     juicyness: 3,
   },
-] as const;
+] 
 
 export const questionRouter = createTRPCRouter({
   random: publicProcedure
@@ -314,6 +322,7 @@ export const questionRouter = createTRPCRouter({
       })
     )
     .query(({ input }) => {
+      
       const filtered = questions.filter(
         (question) =>
           question.juicyness <= input.maxJuicyness &&
