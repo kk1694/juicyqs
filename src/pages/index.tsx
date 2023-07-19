@@ -17,16 +17,23 @@ const categories = [
   "outlier",
 ];
 
-
-
 export default function Home() {
-  
   const [selected, setSelected] = useState<string[]>(["sex", "relationships"]);
-  const [juicyness, setJuicyness] = useState(5);
-  const [showSettings, setShowSettings] = useState(true);
+  const [minJuicyness, setMinJuicyNess] = useState(2);
+  const [maxJuicyness, setMaxJuicyNess] = useState(4);
+  const [showSettings, setShowSettings] = useState(false);
 
-  const question = api.questions.random.useQuery({ categories: selected, maxJuiciness: juicyness });
-  
+  const question = api.questions.random.useQuery({
+    categories: selected,
+    maxJuicyness,
+    minJuicyness,
+  });
+  const total = api.questions.numQs.useQuery({
+    categories: selected,
+    maxJuicyness,
+    minJuicyness,
+  });
+
   const handleSelect = (category: string) => {
     if (selected.includes(category)) {
       setSelected((selected) => selected.filter((s) => s !== category));
@@ -36,7 +43,8 @@ export default function Home() {
     setSelected((selected) => [...selected, category]);
   };
 
-  async function handleNewQuestion () {
+  async function handleNewQuestion() {
+    setShowSettings(false);
     await question.refetch();
     return;
   }
@@ -64,19 +72,26 @@ export default function Home() {
           </button>
           {showSettings && (
             <>
+              <h2 className="text-2xl text-slate-300">
+                Total Questions: {total.data?.total}
+              </h2>
+
               <div className="flex w-full flex-col text-2xl text-slate-300 ">
                 <h2>Select Categories</h2>
-                <div className="flex flex-col">
+                <div className="grid grid-cols-2">
                   {categories.map((c) => (
-                    <div key={c} className="flex flex-row w-fit px-4 rounded-md gap-x-2 text-lg hover:bg-purple-400" onClick={(e) => {
-                      e.preventDefault();
-                      handleSelect(c);
-                    }}>
+                    <div
+                      key={c}
+                      className="flex w-fit flex-row gap-x-2 rounded-md px-4 text-lg hover:bg-purple-400"
+                      onClick={(e) => {
+                        e.preventDefault();
+                        handleSelect(c);
+                      }}
+                    >
                       <input
                         type="checkbox"
                         className=""
                         checked={selected.includes(c)}
-                        
                       />
                       <label>{c}</label>
                     </div>
@@ -84,16 +99,32 @@ export default function Home() {
                 </div>
               </div>
               <div className="flex w-full flex-col gap-y-2 px-4 text-2xl text-slate-300">
-                <h2>Juiciness: {juicyness}</h2>
+                <label className="text-lg">
+                  Minimum Juicyness: {minJuicyness}
+                </label>
                 <input
                   type="range"
                   className="w-full"
                   min={1}
                   max={10}
-                  value={juicyness}
+                  value={minJuicyness}
                   onChange={(e) => {
                     e.preventDefault();
-                    setJuicyness(parseInt(e.target.value));
+                    setMinJuicyNess(parseInt(e.target.value));
+                  }}
+                />
+                <label className="text-lg">
+                  Maximum Juicyness: {maxJuicyness}
+                </label>
+                <input
+                  type="range"
+                  className="w-full"
+                  min={1}
+                  max={10}
+                  value={maxJuicyness}
+                  onChange={(e) => {
+                    e.preventDefault();
+                    setMaxJuicyNess(parseInt(e.target.value));
                   }}
                 />
               </div>
@@ -101,21 +132,24 @@ export default function Home() {
           )}
 
           {!showSettings && (
-            <div className="flex flex-col gap-y-4 items-center">
-            <div className="flex flex-wrap text-center text-medium text-2xl text-purple-300 justify-center w-full px-6">
-            <p className="">
-            {question.data?.question}
-            </p>
-            </div>
+            <div className="flex flex-col items-center gap-y-4">
+              <div className="text-medium flex w-full flex-wrap justify-center px-6 text-center text-2xl text-purple-300">
+                <p className="">{question.data?.question}</p>
+              </div>
 
-            <p className="text-sm text-slate-700">
-              {question.data?.category} / {question.data?.juicyness.toString()}
-            </p>
+              <p className="text-sm text-slate-700">
+                {question.data?.category} /{" "}
+                {question.data?.juicyness.toString()}
+              </p>
             </div>
           )}
 
-
-          <button className="text-xl! h-10 px-6 rounded-lg bg-purple-600 text-slate-300" onClick={() => {void handleNewQuestion()}}>
+          <button
+            className="text-xl! h-10 rounded-lg bg-purple-600 px-6 text-slate-300"
+            onClick={() => {
+              void handleNewQuestion();
+            }}
+          >
             {question.isFetching ? "Loading..." : "New Question"}
           </button>
         </div>
